@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FishNet.Object;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -9,7 +10,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
 #endif
-	public class FirstPersonController : MonoBehaviour
+	public class FirstPersonController : NetworkBehaviour
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
@@ -95,7 +96,28 @@ namespace StarterAssets
 			}
 		}
 
-		private void Start()
+        public override void OnStartClient()
+        {
+            base.OnStartClient();
+
+            if (!IsOwner)
+            {
+                // Disable input and camera for non-owning clients
+#if ENABLE_INPUT_SYSTEM
+                if (_playerInput != null) _playerInput.enabled = false;
+#endif
+                if (_input != null) _input.enabled = false;
+                if (CinemachineCameraTarget != null) CinemachineCameraTarget.SetActive(false);
+
+                // Disable AudioListener on non-local player
+                AudioListener listener = GetComponentInChildren<AudioListener>();
+                if (listener != null) listener.enabled = false;
+            }
+        }
+
+
+
+        private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
@@ -112,14 +134,16 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
+            if (!IsOwner) return;
+            JumpAndGravity();
 			GroundedCheck();
 			Move();
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+            if (!IsOwner) return;
+            CameraRotation();
 		}
 
 		private void GroundedCheck()
