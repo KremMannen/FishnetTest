@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2039772786252472833}
   - component: {fileID: 2257095036973015648}
   - component: {fileID: 6224420961629758277}
-  - component: {fileID: 1311754776013829004}
   - component: {fileID: 2904177706204753551}
   - component: {fileID: 3447971434164795595}
   - component: {fileID: 9010383795697423238}
@@ -134,7 +133,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: 1311754776013829004}
+  - {fileID: 0}
   - {fileID: 0}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
@@ -169,21 +168,6 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
     IsValid: 1
---- !u!114 &1311754776013829004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7719536499352152577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 6224420961629758277}
-  _networkObjectCache: {fileID: 6224420961629758277}
 --- !u!114 &2904177706204753551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +210,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
