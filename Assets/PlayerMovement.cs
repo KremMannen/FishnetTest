@@ -11,7 +11,10 @@ public class PlayerMovement : NetworkBehaviour
     public override void OnStartClient()
     {
         if (IsOwner)
+        { 
+            Debug.Log($"Enabling PlayerInput for: {gameObject.name}");
             GetComponent<PlayerInput>().enabled = true;
+        }
     }
 
     public void OnMove(InputValue value)
